@@ -5,6 +5,6 @@ Group 5
 Members:
 Kurt Weber
 Eddy Rosales
-Dao, Khai D
+Khai Dao
 
 #additional details
