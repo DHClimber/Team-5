@@ -6,5 +6,6 @@ Members:
 Kurt Weber
 Eddy Rosales
 Khai Dao
+Daniel Hitchcock
 
 #additional details
