@@ -1,1 +1,13 @@
 #add file names to ignore
+venv/
+backend/db.sqlite3
+__pycache__
+
+
+# Visual Studio Code # 
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history
