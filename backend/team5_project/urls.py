@@ -25,5 +25,7 @@ urlpatterns = [
     path('communication/', include('communication.urls')),
     path('event/', include('event_management.urls')),
     path('ratings/', include('volunteer_rating.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('mail_serv/',include('mail_serv.urls')),
 
 ]
