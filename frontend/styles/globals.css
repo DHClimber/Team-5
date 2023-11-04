@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -14,14 +14,98 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+} */
+
+/*DARK MODE*/
+/* :root {
+	--foreground-rgb: 255, 255, 255;
+	--background-start-rgb: 0, 0, 0;
+	--background-end-rgb: 0, 0, 0;
+} */
+
+/*LIGHT MODE*/
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* body {
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
+} */
+
+.login-background {
+	background-image: url("/gradient.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: -500px top;
+}
+
+@layer base {
+}
+
+@layer components {
+	.primary-button {
+		@apply bg-blue-600 py-2 w-24 rounded-sm text-gray-100 
+		hover:bg-blue-400 font-semibold transition-all;
+	}
+
+	.primary-button-red {
+		@apply bg-white py-2 w-24 rounded-md hover:bg-[#993c3c] text-[#ff6464] hover:text-white;
+	}
+
+	.tertiary-button {
+		@apply text-blue-600 hover:text-blue-400 font-bold border-b border-blue-600 hover:border-blue-400 transition-all;
+	}
+
+	.landing-page-header-tw {
+		@apply text-5xl pt-24 text-white;
+	}
+
+	.header-sub-text {
+		@apply text-[#993c3c];
+	}
+
+	.text-secondary {
+		@apply text-[#f6acac] tracking-wide;
+	}
+
+	.primary-color {
+		@apply bg-[#ff6464];
+	}
+
+	.primary-color-text {
+		@apply text-[#ff6464];
+	}
+
+	.secondary-color-text {
+		@apply text-[#662828];
+	}
+
+	.register-button {
+		@apply bg-white py-2 w-32 rounded-md hover:bg-[#993c3c] text-[#ff6464] hover:text-white secondary-font text-xl;
+	}
+}
+
+.landing-page-header {
+	font-family: "Koulen", sans-serif;
+}
+
+.primary-font {
+	font-family: "Koulen", sans-serif;
+}
+
+.secondary-font {
+	font-family: "Oswald", sans-serif;
+	font-weight: 400;
+}
+
+.landing-box-shadow {
+	box-shadow: 5px 0 10px 0 rgba(0, 0, 0, 0.5); /* Horizontal offset is negative (-5px) */
 }
