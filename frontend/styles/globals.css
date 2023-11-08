@@ -51,6 +51,9 @@
 }
 
 @layer components {
+	.main-flex-row {
+		@apply flex flex-row h-screen;
+	}
 	.primary-button {
 		@apply bg-blue-600 py-2 w-24 rounded-sm text-gray-100 
 		hover:bg-blue-400 font-semibold transition-all;
@@ -84,12 +87,36 @@
 		@apply text-[#ff6464];
 	}
 
+	.section-border {
+		@apply flex flex-row w-full border-b-2 border-white py-2;
+	}
+
 	.secondary-color-text {
 		@apply text-[#662828];
 	}
 
 	.register-button {
 		@apply bg-white py-2 w-32 rounded-md hover:bg-[#993c3c] text-[#ff6464] hover:text-white secondary-font text-xl;
+	}
+
+	.register-left-half-div {
+		@apply flex flex-col bg-[#ff6464] w-[50%] items-center landing-box-shadow;
+	}
+
+	.register-right-half-div {
+		@apply flex flex-col w-[50%] items-center justify-center;
+	}
+
+	.form-container-styles {
+		@apply flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font;
+	}
+
+	.form-styles {
+		@apply flex flex-col;
+	}
+
+	.form-header-styles {
+		@apply text-3xl primary-font pb-4;
 	}
 }
 
