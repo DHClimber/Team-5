@@ -3,6 +3,7 @@ venv/
 backend/db.sqlite3
 __pycache__
 backend/mail_serv/config.py
+.coverage
 
 # Visual Studio Code # 
 .vscode/* 
