@@ -1,4 +1,8 @@
+import MainHeader from "@/components/LoginSignUpPages/MainHeader";
+import RedirectSection from "@/components/LoginSignUpPages/RedirectSection";
+import SubHeader from "@/components/LoginSignUpPages/SubHeader";
 import { httpUserSignIn } from "@/utils/auth";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
@@ -52,31 +56,16 @@ const Login = () => {
 	return (
 		<div className="flex flex-row h-screen ">
 			<div className="flex flex-col bg-[#ff6464] w-[50%] items-center landing-box-shadow">
-				<h1 className="landing-page-header landing-page-header-tw">
-					Community <span className="header-sub-text">Canvas</span>
-				</h1>
-				<h2 className="primary-font text-secondary text-xl">
-					Your Opportunity to Create Change: Join Community Canvas.
-				</h2>
-
-				<div className="flex flex-col pt-24 space-y-8">
-					<div className="flex flex-row justify-between items-center">
-						{/* VOLUNTEER SIGN UP */}
-						<h3 className="secondary-font text-white text-4xl">
-							Looking to Volunteer?
-						</h3>
-						<button className="register-button">Register Now</button>
-					</div>
-					{/* ORGANIZER SIGN UP */}
-					<div className="border-b-2 border-white"></div>
-					<div className="flex flex-row space-x-8 items-center">
-						{/* VOLUNTEER SIGN UP */}
-						<h3 className="secondary-font secondary-color-text text-4xl">
-							Want to be a new organizer?
-						</h3>
-						<button className="register-button">Register Now</button>
-					</div>
-				</div>
+				<MainHeader />
+				<SubHeader />
+				<RedirectSection
+					first_title={"Looking to volunteer?"}
+					first_link={"/sign-up"}
+					first_button={"Register Now"}
+					second_title={"Want to be a new organizer?"}
+					second_link={"/sign-up-organizer"}
+					second_button={"Register Now"}
+				/>
 			</div>
 			<div className="flex flex-col w-[50%] items-center justify-center">
 				{/*Login Form Here*/}
@@ -118,7 +107,9 @@ const Login = () => {
 				</div>
 				<div className="flex flex-row space-x-2 secondary-font pt-2">
 					<h6>Looking for organizer login?</h6>
-					<button className="primary-color-text">Click Here</button>
+					<Link href="/login-organizer">
+						<button className="primary-color-text">Click Here</button>
+					</Link>
 				</div>
 			</div>
 		</div>
