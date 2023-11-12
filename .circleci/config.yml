@@ -20,6 +20,8 @@ jobs:
       - run:
           name: Test Authentication App
           command: python backend/manage.py test authentication
+      - store_test_results:
+          path: test-results
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
