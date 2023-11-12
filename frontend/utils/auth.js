@@ -29,4 +29,25 @@ async function httpUserSignIn(email, password) {
 	}
 }
 
-export { httpUserSignIn };
+async function httpPasswordReset(email) {
+	const data = {
+		email: email,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/mail_serv/`, {
+			method: "post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			return responseData;
+		} else {
+			throw new Error("Failed to reset password");
+		}
+	} catch (error) {
+		return error;
+	}
+}
+
+export { httpUserSignIn, httpPasswordReset };
