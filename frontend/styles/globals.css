@@ -118,6 +118,10 @@
 	.form-header-styles {
 		@apply text-3xl primary-font pb-4;
 	}
+
+	.login-and-password-reset-forms {
+		@apply flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font;
+	}
 }
 
 .landing-page-header {
