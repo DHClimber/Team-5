@@ -1,6 +1,7 @@
 #add file names to ignore
 venv/
 backend/db.sqlite3
+backend/.env
 __pycache__
 .coverage
 
