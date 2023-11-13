@@ -1,13 +1,12 @@
 import MainHeader from "@/components/LoginSignUpPages/MainHeader";
 import RedirectSection from "@/components/LoginSignUpPages/RedirectSection";
 import SubHeader from "@/components/LoginSignUpPages/SubHeader";
-import { httpUserSignIn } from "@/utils/auth";
-import Link from "next/link";
+import { httpPasswordReset } from "@/utils/auth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
 
-const Login = () => {
+const PasswordReset = () => {
 	const router = useRouter();
 
 	const [loading, setLoading] = useState(false);
@@ -15,7 +14,6 @@ const Login = () => {
 
 	const [formValues, setFormValues] = useState({
 		email: "",
-		password: "",
 	});
 
 	const handleInputChange = (event) => {
@@ -31,7 +29,7 @@ const Login = () => {
 
 		setLoading(true);
 		try {
-			let result = await httpUserSignIn(formValues.email, formValues.password);
+			let result = await httpPasswordReset(formValues.email);
 			setFormValues({
 				email: "",
 				password: "",
@@ -41,7 +39,7 @@ const Login = () => {
 			console.log(await result.status);
 			setLoading(false);
 			if (result?.email) {
-				// router.push("/home");
+				router.push("/login");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);
@@ -52,25 +50,24 @@ const Login = () => {
 			setError(true);
 		}
 	};
-
 	return (
-		<div className="flex flex-row h-screen ">
-			<div className="flex flex-col bg-[#ff6464] w-[50%] items-center landing-box-shadow">
+		<main className="main-flex-row">
+			<div className="register-left-half-div">
 				<MainHeader />
 				<SubHeader />
 				<RedirectSection
-					first_title={"Looking to volunteer?"}
-					first_link={"/sign-up"}
-					first_button={"Register Now"}
-					second_title={"Want to be a new organizer?"}
-					second_link={"/sign-up-organizer"}
+					first_title={"Looking to sign in?"}
+					first_link={"/login"}
+					first_button={"Sign In "}
+					second_title={"Want to be a new volunteer?"}
+					second_link={"/sign-up"}
 					second_button={"Register Now"}
 				/>
 			</div>
-			<div className="flex flex-col w-[50%] items-center justify-center">
-				{/*Login Form Here*/}
-				<div className="flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font">
-					<h2 className="text-3xl primary-font pb-4">Log In</h2>
+			<div className="register-right-half-div">
+				{/*Password Reset Form Here*/}
+				<div className="login-and-password-reset-forms">
+					<h2 className="form-header-styles mr-12">Reset Password</h2>
 					<form className="flex flex-col">
 						<label className="text-lg">Email:</label>
 						<input
@@ -80,26 +77,13 @@ const Login = () => {
 							value={formValues.email}
 							onChange={handleInputChange}
 						/>
-
-						<label className="mt-4 text-lg">Password:</label>
-						<input
-							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-							name="password"
-							type="password"
-							value={formValues.password}
-							onChange={handleInputChange}
-						/>
-						<div className="flex flex-row justify-end py-1">
-							<Link href="/password-reset">
-								<button>Forgot Password?</button>
-							</Link>
-						</div>
 						<button
 							className="primary-button-red w-full mt-12 transition-all"
 							onClick={(event) => handleSubmit(event)}
 						>
-							Login
+							Reset Password
 						</button>
+						{/* DISPLAY ANY ERRORS FROM API RESPONSE HERE */}
 					</form>
 					<div className="flex flex-row justify-center">
 						<BarLoader
@@ -110,15 +94,9 @@ const Login = () => {
 						/>
 					</div>
 				</div>
-				<div className="flex flex-row space-x-2 secondary-font pt-2">
-					<h6>Looking for organizer login?</h6>
-					<Link href="/login-organizer">
-						<button className="primary-color-text">Click Here</button>
-					</Link>
-				</div>
 			</div>
-		</div>
+		</main>
 	);
 };
 
-export default Login;
+export default PasswordReset;
