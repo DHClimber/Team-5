@@ -4,7 +4,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your models here.
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, first_name, last_name, phone_number, password=None):
+    def create_user(self, username, email, first_name, last_name, phone_number, is_admin, password=None):
         if (username is None):
             raise TypeError('Users should have a username')
         if (email is None):
@@ -21,7 +21,8 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name=first_name,
             last_name=last_name,
-            phone_number=phone_number    
+            phone_number=phone_number,
+            is_admin=is_admin    
         )
         user.set_password(password)
         user.save()

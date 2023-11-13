@@ -36,6 +36,7 @@ class RegisterView(APIView):
         serializer.save()
 
         user_data = serializer.data
+        user['is_admin'] = False  # Set is_admin to False for normal users, validate in serializer
 
         user = User.objects.get(email=user_data['email'])
         token = RefreshToken.for_user(user).access_token
@@ -85,7 +86,8 @@ class OrganizerRegisterAPIView(APIView):
             return Response({'error': 'Registration password is invalid'}, status=status.HTTP_401_UNAUTHORIZED)
 
         user = request.data
-        user['is_admin'] = True  # Set is_admin to True for organizers
+        user['is_admin'] = True  # Set is_admin to True for organizers, validate in serializer
+        print(user)
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()

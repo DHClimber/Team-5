@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'first_name', 'last_name', 'phone_number']
+        fields = ['email', 'username', 'password', 'first_name', 'last_name', 'phone_number', 'is_admin']
 
     def validate(self, attrs):
         email = attrs.get('email', '')
@@ -51,6 +51,8 @@ class LoginSerializer(serializers.ModelSerializer):
 
         if not user:
             raise AuthenticationFailed('Invalid credentials, try again')
+        if user.is_admin:
+            raise AuthenticationFailed('Unauthorized, user is registered as an organizer. Please use correct login portal')
         # if not user.is_active:
         #     raise AuthenticationFailed('Account disabled, contact admin')
         # if not user.is_verified:
@@ -84,6 +86,9 @@ class OrganizerLoginSerializer(serializers.ModelSerializer):
 
         if not user:
             raise AuthenticationFailed('Invalid credentials, try again')
+        
+        if not user.is_admin:
+            raise AuthenticationFailed('Unauthorized, not an organizer')
 
         return {
             'email': user.email,
