@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Link from "next/link";
 import { BarLoader } from "react-spinners";
+import { httpOrganizerSignIn } from "@/utils/auth";
 
 const LoginOrganizer = () => {
 	const router = useRouter();
@@ -30,7 +31,10 @@ const LoginOrganizer = () => {
 
 		setLoading(true);
 		try {
-			let result = await httpUserSignIn(formValues.email, formValues.password);
+			let result = await httpOrganizerSignIn(
+				formValues.email,
+				formValues.password
+			);
 			setFormValues({
 				email: "",
 				password: "",
@@ -40,7 +44,7 @@ const LoginOrganizer = () => {
 			console.log(await result.status);
 			setLoading(false);
 			if (result?.email) {
-				// router.push("/home");
+				router.push("/organizer-home");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);
@@ -61,10 +65,10 @@ const LoginOrganizer = () => {
 				<SubHeader />
 				<RedirectSection
 					first_title={"Looking to volunteer?"}
-					first_link={"/sign-up"}
+					first_link={"sign-up"}
 					first_button={"Register Now"}
 					second_title={"Want to be a new organizer?"}
-					second_link={"/sign-up-organizer"}
+					second_link={"sign-up-organizer"}
 					second_button={"Register Now"}
 				/>
 			</div>

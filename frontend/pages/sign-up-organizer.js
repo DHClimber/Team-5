@@ -4,6 +4,7 @@ import SubHeader from "@/components/LoginSignUpPages/SubHeader";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
+import { httpOrganizerRegister } from "@/utils/auth";
 
 const SignUpOrganizer = () => {
 	const router = useRouter();
@@ -19,7 +20,7 @@ const SignUpOrganizer = () => {
 		email: "",
 		password: "",
 		confirm_password: "",
-		organizer_key: "",
+		sign_up_password: "",
 	});
 
 	const handleInputChange = (event) => {
@@ -35,17 +36,25 @@ const SignUpOrganizer = () => {
 
 		setLoading(true);
 		try {
-			let result = await httpUserSignIn(formValues.email, formValues.password);
-			setFormValues({
-				email: "",
-				password: "",
-			});
+			let result = await httpOrganizerRegister(
+				formValues.email,
+				formValues.username,
+				formValues.password,
+				formValues.first_name,
+				formValues.last_name,
+				formValues.phone_number,
+				formValues.sign_up_password
+			);
+			// setFormValues({
+			// 	email: "",
+			// 	password: "",
+			// });
 			console.log("Result on login page: ");
 			console.log(await result);
 			console.log(await result.status);
 			setLoading(false);
-			if (result?.email) {
-				// router.push("/home");
+			if (result?.ok) {
+				router.push("/login-organizer");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);
@@ -63,10 +72,10 @@ const SignUpOrganizer = () => {
 				<SubHeader />
 				<RedirectSection
 					first_title={"Looking to sign in?"}
-					first_link={"/"}
+					first_link={""}
 					first_button={"Sign In"}
 					second_title={"Want to be a new volunteer?"}
-					second_link={"/sign-up"}
+					second_link={"sign-up"}
 					second_button={"Register Now"}
 				/>
 			</div>
@@ -146,9 +155,9 @@ const SignUpOrganizer = () => {
 						<label className="text-lg pt-1">Organizer Key:</label>
 						<input
 							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-							name="organizer_key"
+							name="sign_up_password"
 							type="text"
-							value={formValues.organizer_key}
+							value={formValues.sign_up_password}
 							onChange={handleInputChange}
 						/>
 						<button
