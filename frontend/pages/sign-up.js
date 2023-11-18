@@ -4,6 +4,7 @@ import SubHeader from "@/components/LoginSignUpPages/SubHeader";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
+import { httpUserRegister } from "@/utils/auth";
 
 const SignUp = () => {
 	const router = useRouter();
@@ -34,17 +35,29 @@ const SignUp = () => {
 
 		setLoading(true);
 		try {
-			let result = await httpUserSignIn(formValues.email, formValues.password);
+			let result = await httpUserRegister(
+				formValues.email,
+				formValues.username,
+				formValues.password,
+				formValues.first_name,
+				formValues.last_name,
+				formValues.phone_number
+			);
 			setFormValues({
 				email: "",
 				password: "",
+				confirm_password: "",
+				first_name: "",
+				last_name: "",
+				phone_number: "",
+				username: "",
 			});
 			console.log("Result on login page: ");
 			console.log(await result);
 			console.log(await result.status);
 			setLoading(false);
-			if (result?.email) {
-				// router.push("/home");
+			if (result?.ok) {
+				router.push("/login");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);
@@ -63,10 +76,10 @@ const SignUp = () => {
 				<SubHeader />
 				<RedirectSection
 					first_title={"Looking to sign in?"}
-					first_link={"/"}
+					first_link={""}
 					first_button={"Sign In"}
 					second_title={"Want to be a new organizer?"}
-					second_link={"/sign-up-organizer"}
+					second_link={"sign-up-organizer"}
 					second_button={"Register Now"}
 				/>
 			</div>

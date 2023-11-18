@@ -41,7 +41,7 @@ const Login = () => {
 			console.log(await result.status);
 			setLoading(false);
 			if (result?.email) {
-				// router.push("/home");
+				router.push("/home");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);
@@ -60,10 +60,10 @@ const Login = () => {
 				<SubHeader />
 				<RedirectSection
 					first_title={"Looking to volunteer?"}
-					first_link={"/sign-up"}
+					first_link={"sign-up"}
 					first_button={"Register Now"}
 					second_title={"Want to be a new organizer?"}
-					second_link={"/sign-up-organizer"}
+					second_link={"sign-up-organizer"}
 					second_button={"Register Now"}
 				/>
 			</div>
