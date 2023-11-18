@@ -9,27 +9,30 @@ User = get_user_model()
 
 class UserCreationTests(TestCase):
     def test_create_user_with_valid_details(self):
-        user = User.objects.create_user(username='testuser', email='test@example.com', password='testpass123')
+        user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
         self.assertEqual(user.email, 'test@example.com')
         self.assertEqual(user.username, 'testuser')
+        self.assertEqual(user.first_name, 'test')
+        self.assertEqual(user.last_name, 'user')
+        self.assertEqual(user.phone_number, '1234567890')
         self.assertTrue(user.check_password('testpass123'))
 
     def test_create_user_without_username(self):
         with self.assertRaises(TypeError):
-            User.objects.create_user(username=None, email='test@example.com', password='testpass123')
+            User.objects.create_user(username=None, email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
 
     def test_create_user_without_email(self):
         with self.assertRaises(TypeError):
-            User.objects.create_user(username='testuser', email=None, password='testpass123')
+            User.objects.create_user(username='testuser', email=None, first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
 
     def test_create_duplicate_username(self):
-        User.objects.create_user(username='testuser', email='test1@example.com', password='testpass123')
+        User.objects.create_user(username='testuser', email='test1@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
         with self.assertRaises(IntegrityError):  
-            User.objects.create_user(username='testuser', email='test2@example.com', password='testpass123')
+            User.objects.create_user(username='testuser', email='test2@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
 
 class UserTokenGenerationTest(TestCase):
     def test_token_generation_on_new_user(self):
-        user = User.objects.create_user(username='testuser', email='test@example.com', password='testpass123')
+        user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
         
         user_tokens = user.tokens()
 

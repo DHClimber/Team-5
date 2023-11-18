@@ -11,6 +11,9 @@ class AuthTestCase(TestCase):
         self.user_data = {
             'username': 'testuser',
             'email': 'test@example.com',
+            'first_name': 'test',
+            'last_name' : 'user',
+            'phone_number' : '1234567890',
             'password': 'testpass123'
         }
 
