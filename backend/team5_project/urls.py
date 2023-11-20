@@ -26,6 +26,6 @@ urlpatterns = [
     path('event/', include('event_management.urls')),
     path('ratings/', include('volunteer_rating.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('mail_serv/',include('mail_serv.urls')),
-
+    path('mail_serv/',include('mail_serv.urls'),),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
 ]
