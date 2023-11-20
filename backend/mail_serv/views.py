@@ -4,11 +4,13 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 import requests
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 ## This is only temporary so that we can repurpose if we want to send email notifications other than password
 ## reset
 
+@csrf_exempt
 def mail_serv(request):
     #testing end point http://127.0.0.1:8000/mail_serv/
     #get request body key value pair format {"email":"user email address"}
@@ -26,6 +28,7 @@ def mail_serv(request):
 
     return response 
 
+@csrf_exempt
 def reset(request):
     #testing end point http://127.0.0.1:8000/mail_serv/
     #get request body key value pair format {"email":"user email address"}
@@ -43,6 +46,7 @@ def reset(request):
 
     return response 
 
+@csrf_exempt
 def redirect_view(request):
     #redirects with internal post request to django-rest-auth password reset endpoint
     package = json.loads(request.body.decode('utf-8'))
