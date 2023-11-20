@@ -60,13 +60,15 @@ INSTALLED_APPS = [
     'communication',
     'event_management',
     'volunteer_rating',
-    'mail_serv',   
+    'mail_serv',
+    'rest_framework.authtoken',   
+  
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
