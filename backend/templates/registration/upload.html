@@ -1,0 +1,40 @@
+<html>
+    <head></head>
+    <body style= "background-color:#ff6464">
+        <h3>
+          <font size="6"
+          face="verdana"
+          color="white">
+          File Upload
+        </font>
+        </h3>
+        <form enctype="multipart/form-data" action="" method="post">
+            {% csrf_token %}
+            <font size="4"
+          face="verdana"
+          color="white">
+            {{ form }}
+          </font>
+            <input type="submit" value="Save">
+        </form>
+        <font size="1"
+        face="verdana"
+        color="white">
+        Acceptable file types: jpg, jpeg, png, pdf
+        </font>
+        <br><center>
+        <font size="4"
+        face="verdana"
+        color="white">
+        <h4>{{ body }}</h4>
+      </center>
+      </font>
+      <font size="2"
+      face="verdana"
+      color="white">
+      <center>
+      <h4>{{ message }}{{ url }}</h4>
+    </center>
+    </font>
+    </body>
+</html>

@@ -2,8 +2,12 @@
 venv/
 backend/db.sqlite3
 backend/.env
+backend/media/uploads/*
 __pycache__
 .coverage
+
+# exception to the rule
+!backend/media/uploads/.gitkeep 
 
 # Visual Studio Code # 
 .vscode/* 

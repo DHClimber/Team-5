@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -27,5 +29,6 @@ urlpatterns = [
     path('ratings/', include('volunteer_rating.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
     path('mail_serv/',include('mail_serv.urls'),),
+    path('file_serv/',include('file_serv.urls'),),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
-]
+] + static(settings.MEDIA_ROOT, document_root=settings.MEDIA_ROOT)
