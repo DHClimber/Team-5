@@ -94,6 +94,11 @@ const LoginOrganizer = () => {
 							value={formValues.password}
 							onChange={handleInputChange}
 						/>
+						<div className="flex flex-row justify-end py-1">
+							<Link href="/password-reset">
+								<button>Forgot Password?</button>
+							</Link>
+						</div>
 						<button
 							className="primary-button-red w-full mt-12 transition-all"
 							onClick={(event) => handleSubmit(event)}
