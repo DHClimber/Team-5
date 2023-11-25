@@ -17,3 +17,19 @@ Content-Type:application/json
 X-CSRFToken:<Token Value>
 #body:#
 {"email": "<email>"}
+
+##REST file upload:##
+end point = http://localhost:8000/file_serv/uploadAPI/
+method = POST
+#required header:# 
+Content-Type:application/json
+#body:#
+{"file": "<file data>"}
+
+##return json format##
+{
+    "name": "http.response.status",
+    "value": "HTTP/1.1 200",
+    "url": "media/uploads/1700846721.748402-testpdf.pdf",
+    "status": "upload complete"
+}

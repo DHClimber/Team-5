@@ -10,3 +10,4 @@ class Community(models.Model):
     community_name = models.CharField(max_length=255)
     city = models.CharField(max_length=55)
     state = models.CharField(choices=STATE_CHOICES, max_length=2)
+
