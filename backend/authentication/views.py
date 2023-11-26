@@ -18,7 +18,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from authentication.utils import Util
 
-from authentication.permissions import IsOwner
 from rest_framework import permissions
 
 from team5_project.settings import ORGANIZER_REGISTRATION_PASSWORD
