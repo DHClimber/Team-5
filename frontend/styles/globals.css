@@ -54,9 +54,12 @@
 	.main-flex-row {
 		@apply flex flex-row h-screen;
 	}
+
+	.main-flex-col {
+		@apply flex flex-col h-screen;
+	}
 	.primary-button {
-		@apply bg-blue-600 py-2 w-24 rounded-sm text-gray-100 
-		hover:bg-blue-400 font-semibold transition-all;
+		@apply bg-[#ff6464] py-2 px-4 rounded-md hover:bg-[#993c3c] text-white;
 	}
 
 	.primary-button-red {
@@ -121,6 +124,22 @@
 
 	.login-and-password-reset-forms {
 		@apply flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font;
+	}
+
+	.header-container-styles {
+		@apply flex flex-row w-full h-12 bg-[#ff6464] items-center justify-center drop-shadow-md;
+	}
+
+	.text-color-main {
+		@apply text-neutral-800;
+	}
+
+	.text-color-secondary {
+		@apply text-neutral-700;
+	}
+
+	.text-color-tertiary {
+		@apply text-neutral-500;
 	}
 }
 
