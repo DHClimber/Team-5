@@ -3,6 +3,15 @@ import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
 
 const CreateCommunity = () => {
+	{
+		/* BEFORE CONNECTING FORM TO BACKEND, WE NEED TO SET UP THE REFRESH TOKEN API, SO ONCE ACCESS
+        TOKEN HAS EXPIRED, WE CAN FETCH A NEW ONE 
+            logic flow: make request with access token
+                if request denied to expired credentials, fetch new access token using refresh token
+                update access token in the local storage, then make request again using new token.
+        */
+	}
+
 	const [loading, setLoading] = useState(false);
 	const [formValues, setFormValues] = useState({
 		community_name: "",
