@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import redirect_view
+from .views import passwordResetAPI
 
 from . import views
 
 urlpatterns = [
 path('send_mail/', views.mail_serv),
-path('', views.redirect_view), 
+path('', passwordResetAPI.as_view()), 
 ]

@@ -15,7 +15,6 @@ The Forwarders
 end point = http://127.0.0.1:8000/mail_serv/
 #required header:#
 Content-Type:application/json
-X-CSRFToken:<Token Value>
 #body:#
 {"email": "<email>"}
 
@@ -32,7 +31,7 @@ Content-Type:application/json
 "name": "http.response.status",
 "value": "HTTP/1.1 200",
 "url": "media/uploads/1700846721.748402-testpdf.pdf",
-"status": "upload complete"
+"result": "<message returned>"
 }
 
 # User Account Creation
