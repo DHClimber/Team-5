@@ -1,8 +1,12 @@
 import Header from "@/components/Header";
+import { httpRefreshAccessToken } from "@/utils/auth";
+import { httpCreateCommunity } from "@/utils/requests";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { BarLoader } from "react-spinners";
 
 const CreateCommunity = () => {
+	const router = useRouter();
 	{
 		/* BEFORE CONNECTING FORM TO BACKEND, WE NEED TO SET UP THE REFRESH TOKEN API, SO ONCE ACCESS
         TOKEN HAS EXPIRED, WE CAN FETCH A NEW ONE 
@@ -19,11 +23,46 @@ const CreateCommunity = () => {
 		state: "",
 	});
 
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormValues((prevValues) => ({
+			...prevValues,
+			[name]: value,
+		}));
+	};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		setLoading(true);
+		let response = await httpCreateCommunity(
+			formValues.community_name,
+			formValues.city,
+			formValues.state
+		);
+
+		if (response === false) {
+			await httpRefreshAccessToken();
+			response = await httpCreateCommunity(community_name, city, state);
+		}
+
+		if (response.ok) {
+			console.log("posted");
+			router.push("/organizer-home");
+		} else {
+			console.log(response.json());
+		}
+		setLoading(false);
+	};
+
 	return (
 		<main className="main-flex-col bg-slate-100">
 			<Header />
 			<div className="flex flex-row justify-center">
-				<form className="flex flex-col primary-color drop-shadow-lg rounded-lg p-8 mt-12 w-96 text-white">
+				<form
+					className="flex flex-col primary-color drop-shadow-lg 
+                    rounded-lg p-8 mt-12 w-96 text-white"
+					onSubmit={handleSubmit}
+				>
 					<h2 className="border-b primary-font text-3xl mb-4">
 						Create Community
 					</h2>
@@ -34,8 +73,8 @@ const CreateCommunity = () => {
 							name="community_name"
 							type="text"
 							pattern="[a-zA-Z]+"
-							//value={formValues.community_name}
-							//onChange={handleInputChange}
+							value={formValues.community_name}
+							onChange={handleInputChange}
 						/>
 					</div>
 					<div className="flex flex-col secondary-font">
@@ -45,8 +84,8 @@ const CreateCommunity = () => {
 							name="city"
 							type="text"
 							pattern="[a-zA-Z]+"
-							//value={formValues.city}
-							//onChange={handleInputChange}
+							value={formValues.city}
+							onChange={handleInputChange}
 						/>
 					</div>
 					{/* STATE IS A DROPDOWN LIST ON BACKEND BUT THAT MAY CHANGE 
@@ -58,8 +97,8 @@ const CreateCommunity = () => {
 							name="state"
 							type="text"
 							pattern="[a-zA-Z]+"
-							//value={formValues.state}
-							//onChange={handleInputChange}
+							value={formValues.state}
+							onChange={handleInputChange}
 						/>
 					</div>
 					<div className="flex flex-row w-full justify-center items-center mt-4">

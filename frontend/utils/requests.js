@@ -19,4 +19,30 @@ async function httpFetchCommunities() {
 	}
 }
 
-export { httpFetchCommunities };
+async function httpCreateCommunity(community_name, city, state) {
+	const token = localStorage.getItem("access_token");
+	const data = {
+		community_name: community_name,
+		city: city,
+		state: state,
+	};
+	console.log(data);
+
+	try {
+		const response = await fetch(`${API_URL}/event/community/`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(data),
+		});
+		console.log(response);
+
+		return response;
+	} catch (error) {
+		console.log(error);
+		return false;
+	}
+}
+export { httpFetchCommunities, httpCreateCommunity };
