@@ -163,7 +163,7 @@ async function httpOrganizerRegister(
 
 async function httpRefreshAccessToken() {
 	const refresh_token = localStorage.getItem("refresh_token");
-	console.log(refresh_token);
+	console.log(`REFRESH TOKEN ON AUTH PAGE ${refresh_token}`);
 
 	const data = {
 		refresh: refresh_token,
@@ -176,14 +176,17 @@ async function httpRefreshAccessToken() {
 			body: JSON.stringify(data),
 		});
 		if (response.ok) {
-			response_json = response.json();
-			access = response_json.access;
+			const response_json = await response.json();
+			const access = response_json.access;
+			console.log(`Access on auth page: ${access}`);
 			localStorage.setItem("access_token", access);
 		} else {
 			console.log("error");
-			console.log(response.json());
+			console.log(await response.json());
 		}
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 export {
