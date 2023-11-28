@@ -1,21 +1,23 @@
 import React from "react";
 
-const CommunityCard = () => {
+const CommunityCard = ({ community_name, city, state, admin_name }) => {
 	{
 		/* community name, city, state, admin */
 	}
 	return (
 		<div className="flex flex-col bg-white  items-center p-4 rounded-xl drop-shadow-lg hover:bg-red-100 transition-all">
-			<h3 className="primary-font text-3xl text-color-main">Community Name</h3>
+			<h3 className="primary-font text-3xl text-color-main">
+				{community_name}
+			</h3>
 
 			<div className="flex flex-row text-color-secondary secondary-font text-lg">
 				<p>
-					City, <span>State</span>
+					{city}, <span>{state}</span>
 				</p>
 			</div>
 			<div className="text-color-tertiary secondary-font text-md mt-4">
 				<p>
-					Community Admin: <span>ADMIN NAME</span>
+					Community Admin: <span>{admin_name}</span>
 				</p>
 			</div>
 		</div>
