@@ -104,3 +104,20 @@ Content-Type:application/json
     - "state": "FL"
   - }
 - ]
+
+# Refresh Access Token
+
+- end point = http://localhost:8000/auth/refresh/
+- method = POST
+- headers: {
+  - Content-Type: "application/json",
+  - Body: {
+    - "refresh": "refresh_token_here"
+  - }
+- }
+
+**Response**
+
+- {
+  - "access": "new_access_token_here"
+- }
