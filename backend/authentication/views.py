@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework.permissions import AllowAny
 
 import jwt
 from authentication.renderers import UserRender
@@ -98,3 +100,9 @@ class OrganizerRegisterAPIView(APIView):
         token = RefreshToken.for_user(user).access_token
 
         return Response(user_data, status=status.HTTP_201_CREATED)
+    
+
+class RefreshAccessToken(TokenRefreshView):
+    permission_classes = [AllowAny]
+
+
