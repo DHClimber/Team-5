@@ -1,9 +1,14 @@
 import CommunityCard from "@/components/CommunityLists/CommunityCard";
 import Header from "@/components/Header";
+import { httpRefreshAccessToken } from "@/utils/auth";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const OrganizerHome = () => {
+	useEffect(() => {
+		httpRefreshAccessToken();
+	}, []);
+
 	return (
 		<main className="main-flex-col bg-slate-100">
 			<Header />

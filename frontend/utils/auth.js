@@ -161,10 +161,36 @@ async function httpOrganizerRegister(
 	}
 }
 
+async function httpRefreshAccessToken() {
+	const refresh_token = localStorage.getItem("refresh_token");
+	console.log(refresh_token);
+
+	const data = {
+		refresh: refresh_token,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/auth/refresh/`, {
+			method: "post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			response_json = response.json();
+			access = response_json.access;
+			localStorage.setItem("access_token", access);
+		} else {
+			console.log("error");
+			console.log(response.json());
+		}
+	} catch (error) {}
+}
+
 export {
 	httpUserSignIn,
 	httpPasswordReset,
 	httpOrganizerSignIn,
 	httpUserRegister,
 	httpOrganizerRegister,
+	httpRefreshAccessToken,
 };
