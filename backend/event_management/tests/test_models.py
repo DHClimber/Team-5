@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from event_management.models import Community  # Adjust the import path based on your project structure
+from event_management.models import Community
 
 User = get_user_model()
 
