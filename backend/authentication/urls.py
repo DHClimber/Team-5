@@ -6,6 +6,8 @@ from authentication.views import (RegisterView, LoginAPIView,
                                   OrganizerLoginAPIView, OrganizerRegisterAPIView, 
                                   RefreshAccessToken)
 
+app_name = 'authentication'
+
 urlpatterns = [
     path('register/', RegisterView.as_view(), name="register"),
     path('organizer-register/', OrganizerRegisterAPIView.as_view(), name="organizer-register"),

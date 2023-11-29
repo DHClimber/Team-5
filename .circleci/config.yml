@@ -18,6 +18,9 @@ jobs:
       - run:
           name: Test Mail Serv App
           command: python backend/manage.py test mail_serv
+      - run:
+          name: Test Event Management App
+          command: python backend/manage.py test event_management
 # Orchestrate jobs using workflows
 workflows:
   app-workflow:
