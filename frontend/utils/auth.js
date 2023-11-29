@@ -161,10 +161,39 @@ async function httpOrganizerRegister(
 	}
 }
 
+async function httpRefreshAccessToken() {
+	const refresh_token = localStorage.getItem("refresh_token");
+	console.log(`REFRESH TOKEN ON AUTH PAGE ${refresh_token}`);
+
+	const data = {
+		refresh: refresh_token,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/auth/refresh/`, {
+			method: "post",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		});
+		if (response.ok) {
+			const response_json = await response.json();
+			const access = response_json.access;
+			console.log(`Access on auth page: ${access}`);
+			localStorage.setItem("access_token", access);
+		} else {
+			console.log("error");
+			console.log(await response.json());
+		}
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	httpUserSignIn,
 	httpPasswordReset,
 	httpOrganizerSignIn,
 	httpUserRegister,
 	httpOrganizerRegister,
+	httpRefreshAccessToken,
 };
