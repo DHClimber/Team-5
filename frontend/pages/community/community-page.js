@@ -1,5 +1,6 @@
 import EventCard from "@/components/EventLists/EventCard";
 import Header from "@/components/Header";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -13,7 +14,11 @@ const CommunityPage = () => {
 				<div className="flex flex-row justify-between border-b-2 border-neutral-300 pb-2">
 					<h2 className="secondary-font text-4xl">{communityname}</h2>
 					{/* Add Link with dynamic name and id around button */}
-					<button className="primary-button secondary-font">Add Event</button>
+					<Link
+						href={`/community/add-event?communityname=${communityname}&communityID=${communityID}`}
+					>
+						<button className="primary-button secondary-font">Add Event</button>
+					</Link>
 				</div>
 				<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
 					<EventCard />
