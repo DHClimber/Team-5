@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from event_management.models import Community
+from event_management.choices import STATE_CHOICES
 
 User = get_user_model()
 
@@ -24,7 +25,8 @@ class CommunityModelTestCase(TestCase):
         self.assertEqual(self.community.state, 'FL')
 
     def test_community_state_choices(self):
-        state_choices = dict(Community.STATE_CHOICES)
+        # state_choices = dict(Community.STATE_CHOICES)
+        state_choices = dict(STATE_CHOICES)
         self.assertTrue('FL' in state_choices)
 
     # def test_community_string_representation(self):
