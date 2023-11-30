@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from event_management.models import Community
+from event_management.models import Community, Event
 from authentication.models import User
 from authentication.serializers import RegisterSerializer
 

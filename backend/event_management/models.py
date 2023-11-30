@@ -15,10 +15,10 @@ class Event(models.Model):
     # we should discuss what location should be, an address or what
     # if address then we need to expand to 
     # street_address, city, state, zipcode, building_number(if needed)
-    street_address = models.CharField(max_length=255, min_length=5)
-    city = models.CharField(max_length=55, min_length=2)
+    street_address = models.CharField(max_length=255)
+    city = models.CharField(max_length=55)
     state = models.CharField(choices=STATE_CHOICES, max_length=2)
-    zipcode = models.IntegerField(max_length=5, min_length=5)
+    zipcode = models.CharField(max_length=5)
     building_number = models.CharField(max_length=10, blank=True) # building number is optional
     start_date = models.DateField()
     end_date = models.DateField()
