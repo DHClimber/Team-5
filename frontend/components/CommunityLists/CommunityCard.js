@@ -13,7 +13,10 @@ const CommunityCard = ({
 		/* community name, city, state, admin */
 	}
 	return (
-		<div className="flex flex-col bg-white  items-center p-4 rounded-xl drop-shadow-lg hover:bg-red-100 transition-all">
+		<div
+			className="flex flex-col bg-white  items-center p-4 rounded-xl 
+		drop-shadow-lg hover:bg-red-100 transition-all hover:cursor-pointer"
+		>
 			<h3 className="primary-font text-3xl text-color-main">
 				{community_name}
 			</h3>
