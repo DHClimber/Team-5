@@ -3,12 +3,16 @@ from event_management.models import Community
 from authentication.models import User
 from authentication.serializers import RegisterSerializer
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'phone_number']
 
 class CommunitySerializer(serializers.ModelSerializer):
-    #admin = RegisterSerializer(read_only=True)
-    admin = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(), default=serializers.CurrentUserDefault()
-    )
+    # admin = serializers.PrimaryKeyRelatedField(
+    #     queryset=User.objects.all(), default=serializers.CurrentUserDefault()
+    # )
+    admin = UserSerializer(read_only=True)
 
     class Meta:
         model = Community
