@@ -1,6 +1,14 @@
 import React from "react";
 
-const CommunityCard = ({ community_name, city, state, admin_name }) => {
+const CommunityCard = ({
+	community_name,
+	city,
+	state,
+	first_name,
+	last_name,
+	email,
+	phone,
+}) => {
 	{
 		/* community name, city, state, admin */
 	}
@@ -17,7 +25,10 @@ const CommunityCard = ({ community_name, city, state, admin_name }) => {
 			</div>
 			<div className="text-color-tertiary secondary-font text-md mt-4">
 				<p>
-					Community Admin: <span>{admin_name}</span>
+					Community Admin:{" "}
+					<span>
+						{first_name} {last_name}
+					</span>
 				</p>
 			</div>
 		</div>

@@ -98,7 +98,12 @@ Content-Type:application/json
 - [
   - {
     - "id": 1,
-    - "admin": 8,
+    - "admin": {
+      - "first_name": "First",
+      - "last_name": "Last",
+      - "email": "email@mail.com",
+      - "phone": "1112223333",
+        -},
     - "community_name": "community1",
     - "city": "The City",
     - "state": "FL"
