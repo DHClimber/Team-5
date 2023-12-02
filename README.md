@@ -126,3 +126,69 @@ Content-Type:application/json
 - {
   - "access": "new_access_token_here"
 - }
+
+# Event Creation Submission
+
+- end point = http://localhost:8000/event/community/events/
+- method = POST
+- headers: {
+  - Content-Type: "application/json",
+  - Authorization: "Bearer **tokenhere**"
+  - Body: {
+    - "event_name": "Event 42",
+    - "street_address": "123 road",
+    - "city": "City",
+    - "state": "FL",
+    - "zipcode": "33548",
+    - "building_number": "2", // this field is optional
+    - "start_date": "2023-12-01",
+    - "end_date": "2023-12-02",
+    - "start_time": "12:00:00",
+    - "end_time": "13:00:00",
+    - "community_id": 1
+  - }
+- }
+
+**Response**
+
+- {
+  - "id": 7,
+  - "event_name": "Event 42",
+  - "street_address": "123 road",
+  - "city": "City",
+  - "state": "FL",
+  - "zipcode": "33548",
+  - "building_number": "2",
+  - "start_date": "2023-12-01",
+  - "end_date": "2023-12-02",
+  - "start_time": "12:00:00",
+  - "end_time": "13:00:00",
+  - "community": 1
+- }
+
+# Get Events for a Community
+
+- end point = http://localhost:8000/event/community/events/?community*id=\_COMMUNITY_ID_INT_HERE*
+- method: GET
+- headers: {
+  - Content-Type: "application/json",
+  - Authorization: "Bearer **tokenhere**"
+- }
+
+**Response**
+
+- [
+  - {
+    - "id": 1,
+    - ...
+  - } ,
+  - {}, ....
+- ]
+
+# Get States for Dropdown
+
+- endpoint = http://localhost:8000/event/community/events/states
+- method: GET
+- headers: {
+  - Content-Type: "application/bearer"
+- }

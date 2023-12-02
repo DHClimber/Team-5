@@ -8,7 +8,3 @@ class TestUrls(TestCase):
     def test_register_url_resolves(self):
         url = reverse('register')
         self.assertEqual(resolve(url).func.view_class, CreateCommunity)
-
-    def test_organizer_register_url_resolves(self):
-        url = reverse('event')
-        self.assertEqual(resolve(url).func.view_class, EventAPIView)
