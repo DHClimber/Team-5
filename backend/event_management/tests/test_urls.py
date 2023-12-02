@@ -1,7 +1,7 @@
 from django.urls import reverse, resolve
 from django.test import TestCase
 from event_management.views import (
-    CreateCommunity, EventAPIView
+    CreateCommunity
 )
 
 class TestUrls(TestCase):
