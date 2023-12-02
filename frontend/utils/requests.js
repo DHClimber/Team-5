@@ -45,4 +45,14 @@ async function httpCreateCommunity(community_name, city, state) {
 		return false;
 	}
 }
-export { httpFetchCommunities, httpCreateCommunity };
+
+async function httpFetchStates() {
+	try {
+		const response = await fetch(`${API_URL}/event/community/events/states/`);
+
+		return response.json();
+	} catch (error) {
+		console.log(error);
+	}
+}
+export { httpFetchCommunities, httpCreateCommunity, httpFetchStates };

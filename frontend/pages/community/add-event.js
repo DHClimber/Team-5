@@ -1,12 +1,14 @@
 import Header from "@/components/Header";
+import { httpFetchStates } from "@/utils/requests";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 
 const AddEvent = () => {
 	const router = useRouter();
 
 	const [loading, setLoading] = useState(false);
+	const [stateDropdown, setStateDropdown] = useState({});
 	const [formValues, setFormValues] = useState({
 		event_name: "",
 		street_address: "",
@@ -27,6 +29,20 @@ const AddEvent = () => {
 			[name]: value,
 		}));
 	};
+
+	useEffect(() => {
+		const getStates = async () => {
+			try {
+				const states = await httpFetchStates();
+				setStateDropdown(states);
+				console.log(states);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getStates();
+	}, []);
 
 	/* NEED FORM SUBMISSION FUNCTION ONCE BACKEND VIEW IS BUILT */
 
@@ -81,7 +97,9 @@ const AddEvent = () => {
 								value={formValues.state}
 								onChange={handleInputChange}
 							>
-								<option value="FL">Florida</option>
+								{stateDropdown.states?.map((state) => (
+									<option value={state[0]}>{state[1]}</option>
+								))}
 							</select>
 						</div>
 					</div>
