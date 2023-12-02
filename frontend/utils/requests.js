@@ -46,6 +46,39 @@ async function httpCreateCommunity(community_name, city, state) {
 	}
 }
 
+async function httpCreateEvent(formValues) {
+	const token = localStorage.getItem("access_token");
+	const data = {
+		event_name: formValues.event_name,
+		street_address: formValues.street_address,
+		city: formValues.city,
+		state: formValues.state,
+		zipcode: formValues.zipcode,
+		building_number: formValues.building_number,
+		start_date: formValues.start_date,
+		end_date: formValues.end_date,
+		start_time: `${formValues.start_time}:00`,
+		end_time: `${formValues.end_time}:00`,
+		community_id: parseInt(formValues.community_id),
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/event/community/events/`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(data),
+		});
+
+		console.log(response);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 async function httpFetchStates() {
 	try {
 		const response = await fetch(`${API_URL}/event/community/events/states/`);
@@ -55,4 +88,13 @@ async function httpFetchStates() {
 		console.log(error);
 	}
 }
-export { httpFetchCommunities, httpCreateCommunity, httpFetchStates };
+
+async function httpFetchEvents() {}
+
+export {
+	httpFetchCommunities,
+	httpCreateCommunity,
+	httpCreateEvent,
+	httpFetchStates,
+	httpFetchEvents,
+};
