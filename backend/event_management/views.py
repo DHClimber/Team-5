@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from event_management.serializers import (EventSerializer)
+from event_management.choices import STATE_CHOICES
 
 # Create your views here.
 
@@ -63,6 +64,14 @@ class CreateEvent(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         
+class StateDropDownList(APIView):
+    def get(self, request):
+        states = STATE_CHOICES
+        data = {
+            'states': states
+        }
+
+        return Response(data=data, status=status.HTTP_200_OK)
 
 #Change anything needed, this is only for testing file upload DH
 # class EventAPIView(APIView):
