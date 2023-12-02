@@ -69,7 +69,7 @@ const Login = () => {
 			</div>
 			<div className="flex flex-col w-[50%] items-center justify-center">
 				{/*Login Form Here*/}
-				<div className="flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font">
+				<div className="flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font w-96">
 					<h2 className="text-3xl primary-font pb-4">Log In</h2>
 					<form className="flex flex-col">
 						<label className="text-lg">Email:</label>
@@ -89,17 +89,17 @@ const Login = () => {
 							value={formValues.password}
 							onChange={handleInputChange}
 						/>
-						<div className="flex flex-row justify-end py-1">
-							<Link href="/password-reset">
-								<button>Forgot Password?</button>
-							</Link>
-						</div>
 						<button
 							className="primary-button-red w-full mt-12 transition-all"
 							onClick={(event) => handleSubmit(event)}
 						>
 							Login
 						</button>
+						<div className="flex flex-row justify-end py-1">
+							<Link href="/password-reset">
+								<button>Forgot Password?</button>
+							</Link>
+						</div>
 					</form>
 					<div className="flex flex-row justify-center">
 						<BarLoader
