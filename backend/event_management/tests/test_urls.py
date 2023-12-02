@@ -6,5 +6,5 @@ from event_management.views import (
 
 class TestUrls(TestCase):
     def test_register_url_resolves(self):
-        url = reverse('register')
+        url = reverse('community')
         self.assertEqual(resolve(url).func.view_class, CreateCommunity)
