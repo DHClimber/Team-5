@@ -9,7 +9,11 @@ const AddEvent = () => {
 	const [loading, setLoading] = useState(false);
 	const [formValues, setFormValues] = useState({
 		event_name: "",
-		event_location: "",
+		street_address: "",
+		city: "",
+		state: "",
+		zipcode: "",
+		building_number: "",
 		start_date: "",
 		end_date: "",
 		start_time: "",
@@ -47,58 +51,95 @@ const AddEvent = () => {
 						/>
 					</div>
 					<div className="flex flex-col secondary-font">
-						<label className="text-lg">Location:</label>
+						<label className="text-lg">Street Address:</label>
 						<input
 							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-							name="event_location"
+							name="street_address"
 							type="text"
 							pattern="[a-zA-Z]+"
-							value={formValues.event_location}
+							value={formValues.street_address}
 							onChange={handleInputChange}
 						/>
 					</div>
-					<div className="flex flex-col">
-						<div className="flex flex-col secondary-font">
-							<label className="text-lg">Start Date:</label>
-							<input
-								className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-								name="start_date"
-								type="date"
-								value={formValues.start_date}
-								onChange={handleInputChange}
-							/>
-						</div>
-						<div className="flex flex-col secondary-font">
-							<label className="text-lg">End Date:</label>
-							<input
-								className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-								name="end_date"
-								type="date"
-								value={formValues.end_date}
-								onChange={handleInputChange}
-							/>
-						</div>
-					</div>
 					<div className="flex flex-row justify-between space-x-8">
 						<div className="flex flex-col secondary-font">
-							<label className="text-lg">Start Time:</label>
+							<label className="text-lg">City:</label>
 							<input
 								className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-								name="start_time"
-								type="time"
-								value={formValues.start_time}
+								name="city"
+								type="text"
+								pattern="[a-zA-Z]+"
+								value={formValues.city}
 								onChange={handleInputChange}
 							/>
 						</div>
 						<div className="flex flex-col secondary-font">
-							<label className="text-lg">End Time:</label>
-							<input
+							<label className="text-lg">State:</label>
+							<select
 								className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
-								name="end_time"
-								type="time"
-								value={formValues.end_time}
+								name="state"
+								value={formValues.state}
 								onChange={handleInputChange}
-							/>
+							>
+								<option value="FL">Florida</option>
+							</select>
+						</div>
+					</div>
+					<div className="flex flex-col secondary-font">
+						<label className="text-lg">Building Number (if necessary):</label>
+						<input
+							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
+							name="building_number"
+							type="text"
+							pattern="[a-zA-Z]+"
+							value={formValues.building_number}
+							onChange={handleInputChange}
+						/>
+					</div>
+					<div className="flex flex-row secondary-font justify-between space-x-8">
+						<div className="flex flex-col w-full">
+							<div className="flex flex-col secondary-font">
+								<label className="text-lg">Start Date:</label>
+								<input
+									className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
+									name="start_date"
+									type="date"
+									value={formValues.start_date}
+									onChange={handleInputChange}
+								/>
+							</div>
+							<div className="flex flex-col secondary-font">
+								<label className="text-lg">End Date:</label>
+								<input
+									className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
+									name="end_date"
+									type="date"
+									value={formValues.end_date}
+									onChange={handleInputChange}
+								/>
+							</div>
+						</div>
+						<div className="flex flex-col w-full">
+							<div className="flex flex-col secondary-font">
+								<label className="text-lg">Start Time:</label>
+								<input
+									className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
+									name="start_time"
+									type="time"
+									value={formValues.start_time}
+									onChange={handleInputChange}
+								/>
+							</div>
+							<div className="flex flex-col secondary-font">
+								<label className="text-lg">End Time:</label>
+								<input
+									className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
+									name="end_time"
+									type="time"
+									value={formValues.end_time}
+									onChange={handleInputChange}
+								/>
+							</div>
 						</div>
 					</div>
 					<div className="flex flex-row w-full justify-center items-center mt-4">
