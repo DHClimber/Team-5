@@ -7,7 +7,7 @@ jobs:
     docker:
       - image: cimg/python:3.11
       # Adding Node Image for Frontend testing
-      - image: cimg/node:20.9.0
+      - image: cimg/node:current
     # Add steps to the job
     steps:
       - checkout
