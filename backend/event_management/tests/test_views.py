@@ -5,12 +5,18 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from event_management.models import Community
 from django.contrib.auth import get_user_model
+from dotenv import load_dotenv
+import os
+
+#Load local environment variables
+load_dotenv()
+test_password = os.environ['TEST_USER_PASSWORD']
 
 class CommunityTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
         User = get_user_model()
-        self.user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=True, password='testpass123')
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=True, password=test_password)
         self.client.force_authenticate(user=self.user)
         self.community_url = reverse('community')
 
