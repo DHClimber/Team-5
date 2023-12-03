@@ -6,12 +6,15 @@ jobs:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     docker:
       - image: cimg/python:3.11
+      # Adding Node Image for Frontend testing
+      - image: cimg/node:20.9.0
     # Add steps to the job
     steps:
       - checkout
       - run:
-          name: install dependencies
+          name: Install Django dependencies
           command: pip install -r backend/requirements.txt
+      # Django Tests
       - run:
           name: Test Authentication App
           command: python backend/manage.py test authentication
@@ -21,6 +24,14 @@ jobs:
       - run:
           name: Test Event Management App
           command: python backend/manage.py test event_management
+      # Node Tests
+      - run:
+          name: Install Node.js dependencies
+          command: cd frontend && npm install
+      - run: 
+          name: Test Frontend
+          command: cd frontend && npm test
+
 # Orchestrate jobs using workflows
 workflows:
   app-workflow:
