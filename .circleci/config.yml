@@ -27,10 +27,10 @@ jobs:
       # Node Tests
       - run:
           name: Install Node.js dependencies
-          command: cd frontend && npm install
+          command: cd ../frontend && npm install
       - run: 
           name: Test Frontend
-          command: cd frontend && npm test
+          command: cd ../frontend && npm test
 
 # Orchestrate jobs using workflows
 workflows:
