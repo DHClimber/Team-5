@@ -17,14 +17,16 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#Load local environment variables
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-mlvlw$$bl$b!$h#p5j)04^*9y%^+@r5dk=4t4-v+&zi%*30^87'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-ORGANIZER_REGISTRATION_PASSWORD = 'password'
+ORGANIZER_REGISTRATION_PASSWORD = os.environ['ORGANIZER_REGISTRATION_PASSWORD']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -152,8 +154,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'attachments')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Load local environment variables
-load_dotenv()
+
 # USE BELOW FOR EMAIL 
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
