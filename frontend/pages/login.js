@@ -72,8 +72,9 @@ const Login = () => {
 				<div className="flex flex-col  bg-[#ff6464] p-8 rounded-lg drop-shadow-md text-white secondary-font">
 					<h2 className="text-3xl primary-font pb-4">Log In</h2>
 					<form className="flex flex-col">
-						<label className="text-lg">Email:</label>
+						<label htmlFor="email" className="text-lg">Email:</label>
 						<input
+							id="email"
 							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
 							name="email"
 							type="email"
