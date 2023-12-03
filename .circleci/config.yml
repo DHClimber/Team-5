@@ -34,7 +34,7 @@ jobs:
 
       - node/install-packages:
           pkg-manager: npm
-          app-dir: frontend
+          app-dir: frontend/package.json
       - run: npm test
       # - run:
       #     name: Install Django dependencies
