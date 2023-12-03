@@ -59,15 +59,28 @@ const OrganizerHome = () => {
 					</div>
 					<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
 						{communities.length >= 0 &&
-							communities.map((community, id) => (
-								<CommunityCard
-									community_name={community.community_name}
-									city={community.city}
-									state={community.state}
-									admin_name={community.admin}
-									key={id}
-								/>
-							))}
+							communities.map((community, id) => {
+								const communityNameURL = encodeURIComponent(
+									community.community_name
+								);
+								const communityID = encodeURIComponent(community.id);
+								return (
+									<Link
+										href={`/community/community-page?communityname=${communityNameURL}&communityID=${communityID}`}
+									>
+										<CommunityCard
+											community_name={community.community_name}
+											city={community.city}
+											state={community.state}
+											first_name={community.admin.first_name}
+											last_name={community.admin.last_name}
+											email={community.admin.email}
+											phone={community.admin.phone}
+											key={id}
+										/>
+									</Link>
+								);
+							})}
 					</div>
 				</div>
 			</div>
