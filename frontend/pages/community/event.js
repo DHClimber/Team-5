@@ -82,7 +82,7 @@ const Event = () => {
 								</button>
 							</Link>
 							<Link
-								href={`/community/add-event?communityname=${eventname}&communityID=${eventID}`}
+								href={`/community/event/upload-file?eventname=${eventname}&eventID=${eventID}`}
 							>
 								<button className="primary-button secondary-font">
 									Upload File

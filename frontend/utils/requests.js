@@ -156,6 +156,23 @@ async function httpCreateEventMessage(formData) {
 	}
 }
 
+async function httpUploadEventFile(file) {
+	const token = localStorage.getItem("access_token");
+	const formData = new FormData();
+	formData.append("file", file);
+
+	try {
+		const response = await fetch(`${API_URL}/file_serv/uploadAPI/`, {
+			method: "post",
+			body: formData,
+		});
+		console.log(response);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	httpFetchCommunities,
 	httpCreateCommunity,
@@ -164,4 +181,5 @@ export {
 	httpFetchEvents,
 	httpFetchEventMessages,
 	httpCreateEventMessage,
+	httpUploadEventFile,
 };
