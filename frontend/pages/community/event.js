@@ -75,7 +75,7 @@ const Event = () => {
 					{admin && (
 						<div className="flex flex-row space-x-2">
 							<Link
-								href={`/community/add-event?communityname=${eventname}&communityID=${eventID}`}
+								href={`/community/event/post-message?eventID=${eventID}&eventname=${eventname}`}
 							>
 								<button className="primary-button secondary-font">
 									Post Message
@@ -98,7 +98,7 @@ const Event = () => {
 							Messages From Organizer
 						</span>
 					</h3>
-					<div className="flex flex-col mt-4 space-y-2 ">
+					<div className="flex flex-col mt-4 space-y-2  ">
 						{messages.map((message, id) => (
 							<EventMessage
 								message={message.Message}

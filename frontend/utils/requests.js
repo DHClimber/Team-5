@@ -136,8 +136,8 @@ async function httpFetchEventMessages(event_id) {
 async function httpCreateEventMessage(formData) {
 	const token = localStorage.getItem("access_token");
 	const data = {
-		Message: formData.message,
-		EventId: formData.event_id,
+		Message: formData.Message,
+		EventId: formData.EventId,
 	};
 
 	try {
@@ -147,6 +147,7 @@ async function httpCreateEventMessage(formData) {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${token}`,
 			},
+			body: JSON.stringify(data),
 		});
 
 		return response;
