@@ -89,7 +89,28 @@ async function httpFetchStates() {
 	}
 }
 
-async function httpFetchEvents() {}
+async function httpFetchEvents(community_id) {
+	const token = localStorage.getItem("access_token");
+	console.log(`token: ${token}`);
+
+	try {
+		// /http://localhost:8000/event/community/events/?community_id=1
+		const response = await fetch(
+			`${API_URL}/event/community/events/?community_id=${community_id}`,
+			{
+				method: "get",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 export {
 	httpFetchCommunities,
