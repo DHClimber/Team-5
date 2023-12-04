@@ -2,13 +2,20 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from event_management.models import Community
 from event_management.choices import STATE_CHOICES
+from dotenv import load_dotenv
+import os
+
+#Load local environment variables
+load_dotenv()
+test_password = os.environ['TEST_USER_PASSWORD']
+
 
 User = get_user_model()
 
 class CommunityModelTestCase(TestCase):
     def setUp(self):
         # Create a test user for the admin field
-        self.user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password='testpass123')
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', first_name='test', last_name='user',phone_number='1234567890', is_admin=False, password=test_password)
         
         # Create a test community instance
         self.community = Community.objects.create(

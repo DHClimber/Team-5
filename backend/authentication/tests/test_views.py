@@ -2,7 +2,12 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
+from dotenv import load_dotenv
+import os
 
+#Load local environment variables
+load_dotenv()
+test_password = os.environ['TEST_USER_PASSWORD']
 class AuthTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -12,7 +17,7 @@ class AuthTestCase(TestCase):
         self.user_data = {
             'username': 'testuser',
             'email': 'test@example.com',            
-            'password': 'testpass123',            
+            'password': test_password,            
             'first_name': 'test',
             'last_name' : 'user',
             'phone_number' : '1234567890',
