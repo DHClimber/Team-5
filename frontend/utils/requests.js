@@ -112,10 +112,55 @@ async function httpFetchEvents(community_id) {
 	}
 }
 
+async function httpFetchEventMessages(event_id) {
+	const token = localStorage.getItem("access_token");
+
+	try {
+		const response = await fetch(
+			`${API_URL}/forum/event/?event_id=${event_id}`,
+			{
+				method: "get",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function httpCreateEventMessage(formData) {
+	const token = localStorage.getItem("access_token");
+	const data = {
+		Message: formData.message,
+		EventId: formData.event_id,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/forum/event/post/`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	httpFetchCommunities,
 	httpCreateCommunity,
 	httpCreateEvent,
 	httpFetchStates,
 	httpFetchEvents,
+	httpFetchEventMessages,
+	httpCreateEventMessage,
 };

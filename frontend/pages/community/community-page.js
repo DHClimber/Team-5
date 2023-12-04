@@ -2,6 +2,7 @@ import EventCard from "@/components/EventLists/EventCard";
 import Header from "@/components/Header";
 import { httpRefreshAccessToken } from "@/utils/auth";
 import { httpFetchEvents } from "@/utils/requests";
+import { Underdog } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -50,8 +51,10 @@ const CommunityPage = () => {
 			setAdmin(false);
 		}
 
-		fetchData();
-	}, []);
+		if (communityID !== undefined) {
+			fetchData();
+		}
+	}, [communityID]);
 
 	return (
 		<main className="main-flex-col bg-slate-100">
