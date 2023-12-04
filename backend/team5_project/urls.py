@@ -31,4 +31,5 @@ urlpatterns = [
     path('mail_serv/',include('mail_serv.urls'),),
     path('file_serv/',include('file_serv.urls'),),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('forum/',include('forum.urls'),),
 ] + static(settings.MEDIA_ROOT, document_root=settings.MEDIA_ROOT)
