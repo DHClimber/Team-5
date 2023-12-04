@@ -62,9 +62,16 @@ INSTALLED_APPS = [
     'volunteer_rating',
     'mail_serv',
     'file_serv',
-    'rest_framework.authtoken',   
+    'rest_framework.authtoken',  
+    'forum', 
   
 ]
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_NAME = "user_session"
+SESSION_COOKIE_HTTPONLY = True
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

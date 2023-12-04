@@ -192,3 +192,59 @@ Content-Type:application/json
 - headers: {
   - Content-Type: "application/bearer"
 - }
+
+# Community messages
+
+Authentication is NOT required
+
+method = GET
+# View Events
+
+# end point
+/forum/event/
+  returns all messages for all evernts (not really needed)
+
+# end point
+/forum/event/?event_id=<whatever is used to identify the event>
+  returns only messages for the specific event noted
+
+ # Post messages to event discussion
+
+ method = POST
+
+Authentication is required using permissions class, expects Bearer authorization token in the header.
+
+*this is what was used for postman testing "access token from login"
+{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNjU0NTA2LCJpYXQiOjE3MDE2NTQyMDYsImp0aSI6IjZiNDg1M2Q3MDZjNzQ1NjZiNGEwODYwOGU0MzgzYWM5IiwidXNlcl9pZCI6MX0.t-gYN2T9fTs-XReTaAa7evut7V3lw9LJ0xh_lh0WQbI"}
+
+# end point:
+/forum/event/post/
+
+will post without expected input, but expected body is below for it to work correctly:
+
+body = {"Message": <user comments>, "EventId": <event id>}
+
+# Delete messages
+
+## Delete a single message
+
+ method = POST
+
+Authentication is required using permissions class, expects Bearer authorization token in the header.
+
+# end point:
+/forum/delete/
+
+with no body, nothing will be deleted and return "match not found"
+
+expected body:
+
+message id is the field noted as only "id" return when viewing events
+# this deleted only the indicated message if found
+{"MessageId": <message id>}
+
+# this will delete every message for all events - only useful for testing
+{"MessageId": "all"}
+
+
+
