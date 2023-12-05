@@ -127,7 +127,7 @@
 	}
 
 	.header-container-styles {
-		@apply flex flex-row w-full h-12 bg-[#ff6464] items-center justify-center drop-shadow-md;
+		@apply flex flex-row w-full h-12 px-4 bg-[#ff6464] items-center justify-between drop-shadow-md;
 	}
 
 	.text-color-main {

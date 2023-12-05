@@ -187,6 +187,15 @@ async function httpGetUploads(event_id) {
 	}
 }
 
+async function httpFetchFile(url) {
+	try {
+		const response = await fetch(`${API_URL}/${url}`);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	httpFetchCommunities,
 	httpCreateCommunity,
@@ -197,4 +206,5 @@ export {
 	httpCreateEventMessage,
 	httpUploadEventFile,
 	httpGetUploads,
+	httpFetchFile,
 };

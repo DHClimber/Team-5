@@ -48,7 +48,7 @@ const CreateCommunity = () => {
 
 		if (response.ok) {
 			console.log("posted");
-			router.push("/organizer-home");
+			router.push("/home");
 		} else {
 			console.log(response.json());
 		}
