@@ -11,6 +11,7 @@ const Event = () => {
 	const { eventname, eventID } = router.query;
 	const [admin, setAdmin] = useState(false);
 	const [messages, setMessages] = useState([]);
+	const [files, setFiles] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async (fetched) => {
@@ -35,6 +36,8 @@ const Event = () => {
 			}
 		};
 
+		const fetchFiles = async () => {};
+
 		const fetchToken = async () => {
 			try {
 				await httpRefreshAccessToken();
@@ -50,8 +53,9 @@ const Event = () => {
 			setAdmin(false);
 		}
 
+		let fetched = false;
 		if (eventID !== undefined) {
-			fetchData();
+			fetchData(fetched);
 		}
 	}, [eventID]);
 

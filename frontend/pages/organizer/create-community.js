@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import { httpRefreshAccessToken } from "@/utils/auth";
-import { httpCreateCommunity } from "@/utils/requests";
+import { httpCreateCommunity, httpFetchStates } from "@/utils/requests";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 
 const CreateCommunity = () => {
@@ -17,10 +17,11 @@ const CreateCommunity = () => {
 	}
 
 	const [loading, setLoading] = useState(false);
+	const [stateDropdown, setStateDropdown] = useState({});
 	const [formValues, setFormValues] = useState({
 		community_name: "",
 		city: "",
-		state: "",
+		state: "AL",
 	});
 
 	const handleInputChange = (event) => {
@@ -53,6 +54,20 @@ const CreateCommunity = () => {
 		}
 		setLoading(false);
 	};
+
+	useEffect(() => {
+		const getStates = async () => {
+			try {
+				const states = await httpFetchStates();
+				setStateDropdown(states);
+				console.log(states);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getStates();
+	}, []);
 
 	return (
 		<main className="main-flex-col bg-slate-100">
@@ -92,14 +107,18 @@ const CreateCommunity = () => {
                     SO LEAVE THIS AS TEXT INPUT FOR NOW */}
 					<div className="flex flex-col secondary-font">
 						<label className="text-lg">State:</label>
-						<input
+						<select
 							className="rounded-md p-2 text-xl text-black drop-shadow-md focus:outline-[#ff6464]"
 							name="state"
-							type="text"
-							pattern="[a-zA-Z]+"
 							value={formValues.state}
 							onChange={handleInputChange}
-						/>
+						>
+							{stateDropdown.states?.map((item, i) => (
+								<option value={item[0]} key={i}>
+									{item[1]}
+								</option>
+							))}
+						</select>
 					</div>
 					<div className="flex flex-row w-full justify-center items-center mt-4">
 						<button className="primary-button-red secondary-font">

@@ -51,8 +51,9 @@ const CommunityPage = () => {
 			setAdmin(false);
 		}
 
+		let fetched = false;
 		if (communityID !== undefined) {
-			fetchData();
+			fetchData(fetched);
 		}
 	}, [communityID]);
 
