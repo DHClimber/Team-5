@@ -9,6 +9,7 @@ from file_serv.serializers import (uploadSerializer, SaveUploadSerializer)
 from rest_framework.response import Response
 from rest_framework import status
 import json
+from file_serv.models import FileSave
 
 # Imaginary function to handle an uploaded file.
 from .apps import handle_uploaded_file
@@ -44,5 +45,19 @@ class UploadFileAPIView(APIView):
         payload = json.dumps(filler)
      
         return Response(payload, status=status.HTTP_200_OK)
+    
+
+
+class GetFiles(APIView):
+    def get(self, request):
+        event_id = request.query_params.get('event_id')
+        if event_id is None:
+            return Response('No event ID provided', status=status.HTTP_400_BAD_REQUEST)
+        
+        queryset = FileSave.objects.filter(event_id=event_id)
+        serializer = SaveUploadSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
     

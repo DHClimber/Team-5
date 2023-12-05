@@ -174,6 +174,19 @@ async function httpUploadEventFile(file, event_id) {
 	}
 }
 
+async function httpGetUploads(event_id) {
+	const token = localStorage.getItem("access_token");
+
+	try {
+		const response = await fetch(
+			`${API_URL}/file_serv/get-files/?event_id=${event_id}`
+		);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export {
 	httpFetchCommunities,
 	httpCreateCommunity,
@@ -183,4 +196,5 @@ export {
 	httpFetchEventMessages,
 	httpCreateEventMessage,
 	httpUploadEventFile,
+	httpGetUploads,
 };

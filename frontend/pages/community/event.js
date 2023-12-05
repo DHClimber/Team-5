@@ -11,6 +11,7 @@ const Event = () => {
 	const { eventname, eventID } = router.query;
 	const [admin, setAdmin] = useState(false);
 	const [messages, setMessages] = useState([]);
+	const [files, setFiles] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async (fetched) => {
