@@ -36,6 +36,8 @@ const Event = () => {
 			}
 		};
 
+		const fetchFiles = async () => {};
+
 		const fetchToken = async () => {
 			try {
 				await httpRefreshAccessToken();
@@ -51,8 +53,9 @@ const Event = () => {
 			setAdmin(false);
 		}
 
+		let fetched = false;
 		if (eventID !== undefined) {
-			fetchData();
+			fetchData(fetched);
 		}
 	}, [eventID]);
 
