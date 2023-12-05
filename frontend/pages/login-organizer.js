@@ -44,7 +44,7 @@ const LoginOrganizer = () => {
 			console.log(await result.status);
 			setLoading(false);
 			if (result?.email) {
-				router.push("/organizer-home");
+				router.push("/home");
 				console.log("SUCCESS!");
 			} else {
 				setError(true);

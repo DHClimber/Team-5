@@ -1,7 +1,8 @@
 import EventMessage from "@/components/EventLists/EventMessage";
+import FileCard from "@/components/EventLists/FileCard";
 import Header from "@/components/Header";
 import { httpRefreshAccessToken } from "@/utils/auth";
-import { httpFetchEventMessages } from "@/utils/requests";
+import { httpFetchEventMessages, httpGetUploads } from "@/utils/requests";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -36,7 +37,26 @@ const Event = () => {
 			}
 		};
 
-		const fetchFiles = async () => {};
+		const fetchFiles = async (fetched_files) => {
+			try {
+				const response = await httpGetUploads(eventID);
+				if (response.ok) {
+					fetched_files = true;
+					console.log(response);
+					const response_json = await response.json();
+					console.log(response_json);
+					setFiles(response_json);
+				} else if (!fetched_files) {
+					fetched_files = true;
+					await fetchToken();
+					await fetchFiles(fetched_files);
+				} else {
+					console.log("Fetch files failed");
+				}
+			} catch (error) {
+				console.error("Error during fetch:", error);
+			}
+		};
 
 		const fetchToken = async () => {
 			try {
@@ -54,8 +74,10 @@ const Event = () => {
 		}
 
 		let fetched = false;
+		let fetched_files = false;
 		if (eventID !== undefined) {
 			fetchData(fetched);
+			fetchFiles(fetched_files);
 		}
 	}, [eventID]);
 
@@ -110,6 +132,16 @@ const Event = () => {
 								username={message.UserName}
 								key={id}
 							/>
+						))}
+					</div>
+				</div>
+				<div className="flex flex-col secondary-font text-2xl mt-16">
+					<h3>
+						<span className="border-b-2 border-neutral-400">Files</span>
+					</h3>
+					<div className="flex flex-col mt-4 space-y-2">
+						{files.map((file, id) => (
+							<FileCard filepath={file.file_path} key={id} />
 						))}
 					</div>
 				</div>
