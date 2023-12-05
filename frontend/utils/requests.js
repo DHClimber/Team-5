@@ -89,7 +89,90 @@ async function httpFetchStates() {
 	}
 }
 
-async function httpFetchEvents() {}
+async function httpFetchEvents(community_id) {
+	const token = localStorage.getItem("access_token");
+	console.log(`token: ${token}`);
+
+	try {
+		// /http://localhost:8000/event/community/events/?community_id=1
+		const response = await fetch(
+			`${API_URL}/event/community/events/?community_id=${community_id}`,
+			{
+				method: "get",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function httpFetchEventMessages(event_id) {
+	const token = localStorage.getItem("access_token");
+
+	try {
+		const response = await fetch(
+			`${API_URL}/forum/event/?event_id=${event_id}`,
+			{
+				method: "get",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function httpCreateEventMessage(formData) {
+	const token = localStorage.getItem("access_token");
+	const data = {
+		Message: formData.Message,
+		EventId: formData.EventId,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/forum/event/post/`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(data),
+		});
+
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+async function httpUploadEventFile(file, event_id) {
+	const token = localStorage.getItem("access_token");
+	const formData = new FormData();
+	formData.append("file", file);
+	formData.append("event_id", event_id);
+
+	try {
+		const response = await fetch(`${API_URL}/file_serv/uploadAPI/`, {
+			method: "post",
+			body: formData,
+		});
+		console.log(response);
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}
 
 export {
 	httpFetchCommunities,
@@ -97,4 +180,7 @@ export {
 	httpCreateEvent,
 	httpFetchStates,
 	httpFetchEvents,
+	httpFetchEventMessages,
+	httpCreateEventMessage,
+	httpUploadEventFile,
 };

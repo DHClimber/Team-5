@@ -19,6 +19,7 @@ async function httpUserSignIn(email, password) {
 			console.log(tokens);
 			localStorage.setItem("access_token", tokens.access);
 			localStorage.setItem("refresh_token", tokens.refresh);
+			localStorage.setItem("is_admin", "false");
 
 			return responseData;
 		} else {
@@ -48,7 +49,7 @@ async function httpOrganizerSignIn(email, password) {
 			console.log(tokens);
 			localStorage.setItem("access_token", tokens.access);
 			localStorage.setItem("refresh_token", tokens.refresh);
-			localStorage.setItem("is_admin", true);
+			localStorage.setItem("is_admin", "true"); // localstorage items are always strings
 
 			return responseData;
 		} else {
@@ -189,6 +190,16 @@ async function httpRefreshAccessToken() {
 	}
 }
 
+function returnAdminStatus() {
+	let admin = false;
+	if (localStorage.getItem("is_admin") === "true") {
+		admin = true;
+	} else {
+		admin = false;
+	}
+	return admin;
+}
+
 export {
 	httpUserSignIn,
 	httpPasswordReset,
@@ -196,4 +207,5 @@ export {
 	httpUserRegister,
 	httpOrganizerRegister,
 	httpRefreshAccessToken,
+	returnAdminStatus,
 };

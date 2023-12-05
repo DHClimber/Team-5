@@ -5,7 +5,7 @@ from .forms import UploadFileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from file_serv.serializers import (uploadSerializer)
+from file_serv.serializers import (uploadSerializer, SaveUploadSerializer)
 from rest_framework.response import Response
 from rest_framework import status
 import json
@@ -18,6 +18,9 @@ class UploadFileAPIView(APIView):
 
     def post(self, request):
         file = request.data
+        print(file)
+        event_id = file["event_id"]
+        print(f"Event ID: {event_id}")
         message = handle_uploaded_file(file)
         result = "OK"
         url = ""
@@ -30,7 +33,14 @@ class UploadFileAPIView(APIView):
 
         filler  = {}
         filler["url"] = url
+        print(url)
         filler["result"] = result
+
+        serializer = SaveUploadSerializer(data={"file_path": url, "event": event_id})
+        if serializer.is_valid():
+            serializer.save()
+        
+
         payload = json.dumps(filler)
      
         return Response(payload, status=status.HTTP_200_OK)
