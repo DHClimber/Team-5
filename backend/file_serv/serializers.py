@@ -9,8 +9,15 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from authentication.utils import Util
 import datetime
+from file_serv.models import FileSave
 
 class uploadSerializer(serializers.Serializer):
     file = serializers.FileField(max_length=None, allow_empty_file=False, use_url=True)
 
- 
+
+class SaveUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FileSave
+        fields = ['file_path', 'event']
+    
+

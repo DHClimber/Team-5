@@ -156,10 +156,11 @@ async function httpCreateEventMessage(formData) {
 	}
 }
 
-async function httpUploadEventFile(file) {
+async function httpUploadEventFile(file, event_id) {
 	const token = localStorage.getItem("access_token");
 	const formData = new FormData();
 	formData.append("file", file);
+	formData.append("event_id", event_id);
 
 	try {
 		const response = await fetch(`${API_URL}/file_serv/uploadAPI/`, {

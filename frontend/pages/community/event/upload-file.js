@@ -18,11 +18,11 @@ const UploadFile = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setLoading(true);
-		let response = await httpUploadEventFile(file);
+		let response = await httpUploadEventFile(file, eventID);
 
 		if (!response.ok) {
 			await httpRefreshAccessToken();
-			response = await httpUploadEventFile(file);
+			response = await httpUploadEventFile(file, eventID);
 		}
 
 		if (response.ok) {
